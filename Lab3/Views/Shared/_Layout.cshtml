@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <b>Lab 3 - <i> .NET</i></b>
+            <br />
+            <br />
+            @Html.ActionLink("Home", "Index", "Home") &nbsp;
+            @Html.ActionLink("Razor", "Razor", "Home") &nbsp;
+            @Html.ActionLink("Create Person", "Form", "Home")
+            
+        </header>
+        <div class="content">
+            @RenderBody()
+        </div>
+        <footer>
+            Made by Ababiya Abajobir</br>
+            Student number 040873720
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Strongly Typed";
+}
+
+<h3>"Strongly Typed" Form</h3>
+<form asp-controller="Home" asp-action="DisplayForm/@Model" method="post">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="fname" /></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" name="lname" /></td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="number" name="age" /></td>
+        </tr>
+        <tr>
+            <td>Email Address:</td>
+            <td><input type="email" name="emailadd" /></td>
+        </tr>
+        <tr>
+            <td>Date of Birth:</td>
+            <td><input type="date" id="dob" value="@string.Format("{0:yyyy-MM-dd}", Model.dob)" /></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" /></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" name="description" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Login" />
+</form>

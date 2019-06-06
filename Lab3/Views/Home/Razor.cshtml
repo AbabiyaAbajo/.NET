@@ -1,0 +1,64 @@
+﻿
+<h3>@@Razor Examples</h3>
+
+<h2>Table</h2>
+<table style="border: solid 1px black; border-collapse: collapse;">
+    @{
+        var i = 1;
+        @while (i < 40)
+        {
+            <tr style="margin: 0; border-spacing: 0;">
+                @{
+                    @for (var j = 1; j < 11; j++)
+                    {
+                        <td style="border: solid 1px black; padding: 4px;">@i</td>
+                        i++;
+                    }
+                }
+
+            </tr>
+
+                    }
+    }
+</table>
+
+
+<h2>Table</h2>
+<table>
+    @{
+        var a = 99;
+        var wooo = false;
+        bool aww = false;
+        do
+        {
+            @if (a % 20 == 0)
+            {
+                wooo = true;
+            }
+
+            @if (a % 50 == 0)
+            {
+                aww = true;
+            }
+
+            <tr> <td>@a bottles of beer on the wall, @a bottles of beer. You take one down, you pass it around, @(--a)</td> </tr>
+
+            @if (wooo == true)
+            {
+                <tr> <td>WOOO!</td> </tr>
+                wooo = false;
+            }
+
+            @if (aww == true)
+            {
+                <tr> <td>awwww :(</td> </tr>
+                aww = false;
+            }
+
+        } while (a != 0);
+
+    }
+
+</table>
+</br></br></br>
+@Html.ActionLink("Go Home", "Index", "Home") &nbsp;
