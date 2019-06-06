@@ -1,0 +1,51 @@
+﻿@model IEnumerable<assignment2Net.Models.BadWords>
+
+@{
+    ViewData["Title"] = "ViewBadWords";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bad Words List</h1>
+
+<form asp-controller="Home" asp-action="AddBadWord" method="post">
+
+    <div class="form-group">
+
+        <div class="form-group">
+            <label class="control-label">Bad Word</label>
+            <input name="word" class="form-control" />
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-large btn-primary">Add Bad Word</button>
+</form>
+
+<p>The words added to the list will be replaced by **** in all comments. Words added to this database are not case 
+    sensitive. As per the specification, they will not be applied to the blog posts or other content. Only comments will be 
+    affected. If you wish to have this applied to all content, please reach out to the admin. Thank you.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Word)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Word)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BadWordId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BadWordId">Details</a> |
+                    <a asp-controller="Home" asp-action="DeleteBadWord" onclick="return confirm('Are you sure you want to delete this word?');" asp-route-id="@item.BadWordId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

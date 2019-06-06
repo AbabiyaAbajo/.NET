@@ -1,0 +1,80 @@
+﻿@model assignment2Net.Models.BlogPosts
+
+@{
+    ViewData["Title"] = "EditBlogPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Blog Post</h1>
+
+<h4>Blog Posts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="EditBlogPost">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BlogPostId" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2><b>Upload File</b></h2>
+
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFileNow">
+    <input type="hidden" asp-for="BlogPostId" />
+    <input type="file" name="files" /> <br />
+    <button name="upload">Upload Now</button>
+</form>
+
+<br />
+<br />
+<br />
+<br />
+<h3>Image Upload</h3>
+<div class="row">
+    @foreach (var photo in Model.Photos)
+    {
+            <div class="col-md-3">
+                <div class="img-thumbnail">
+                    <img class="" src="@photo.Url" style="width: 300px; height:200px;" />
+                    <br /><a asp-controller="Home" asp-action="Delete" onclick="return confirm('Are you sure?');" asp-route-id="@photo.PhotoId"><b>Delete</b></a><br />
+                    @photo.Filename
+                </div>
+            </div>
+    }
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

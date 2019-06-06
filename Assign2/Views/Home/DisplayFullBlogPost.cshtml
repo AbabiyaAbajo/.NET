@@ -1,0 +1,109 @@
+﻿@model assignment2Net.Models.BlogPosts
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "DisplayFullBlogPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Full Blog Post</h1>
+
+<div class="border border-secondary rounded" style="margin:4px">
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" style="font-size:x-small; margin-left: 5px">
+            Written by:
+        </dt>
+        <dd class="col-sm-10" style="font-size:x-small">
+            @Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName) @Html.DisplayFor(model => model.User.EmailAddress)
+        </dd>
+        <dt class="col-sm-2" style="margin-left: 5px">
+            @Html.DisplayNameFor(model => model.Posted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Posted)
+        </dd>
+        <dt class="col-sm-2" style="margin-left: 5px">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+    </dl>
+</div><br /><br />
+
+<h3>Image Upload</h3>
+
+<div class="container-fluid" style="padding: 3%">
+    <h1><b>@ViewBag.Title</b></h1>
+    <hr />
+    <hr />
+
+    <br />
+    <br />
+    @if (Model == null || Model.Photos.Count() == 0)
+    {
+
+    }
+    else
+    {
+        <h2><b>Pictures:</b></h2>
+        <div class="row">
+
+            @foreach (var photo in Model.Photos)
+            {
+                <div class="col-md-3">
+                    <div class="img-thumbnail">
+                        <img class="" src="@photo.Url" style="width: 300px; height:200px;" />
+                        <br />
+
+                        @*<a asp-controller="Home" asp-action="Delete" onclick="return confirm('Are you sure?');" asp-route-id="@photo.PhotoId"><b>Delete</b></a><br />*@
+                        @photo.Filename
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<br /><br />
+@if (Model == null || Model.Comments.Count() == 0)
+{
+    <br /><br />
+    <h4>No comments</h4>
+}
+else
+{
+<h4>What do you think?</h4> <br />
+@foreach (var c in Model.Comments)
+{
+
+    <div class="card">
+        <div class="card-body" role="document">
+            <span class="text-capitalize text-sm-right">
+                @c.User.FirstName @c.User.LastName @c.User.EmailAddress
+            </span>
+        </div>
+        <div class="card-footer">
+            <span class="blockquote"> @c.Content  </span>
+        </div>
+    </div> <br />
+
+}<br />
+}
+@if (Context.Session.GetInt32("UserId") != null)
+{
+    <div class="form-group">
+        <h5>Comment</h5>
+        <form asp-controller="Home" asp-action="DisplayFullBlogPost" method="post">
+            <input type="hidden" name="BlogPostId" value="@Html.DisplayFor(model => model.BlogPostId)" />
+
+            <textarea type="text" name="Content" class="form-control"></textarea><br />
+            <button class="btn btn-outline-primary" type="submit">Submit</button>
+        </form>
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

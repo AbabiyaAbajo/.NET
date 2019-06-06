@@ -1,0 +1,34 @@
+﻿
+@model assignment2Net.Models.Users
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+
+<div>
+    <h4>Users</h4><br>
+    <form asp-controller="Home" asp-action="VerifyLogin" method="post">
+
+        <div class="form-group">
+            <fieldset>
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label"></label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </fieldset>
+        </div>
+        <button type="submit" class="btn btn-large btn-primary">Login</button>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
