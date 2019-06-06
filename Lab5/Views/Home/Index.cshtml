@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Lab5a.Models.Photos>;
+@{
+    ViewData["Title"] = "Home Page";
+    <link href="~/css/site.css" rel="stylesheet"/>
+}
+
+@using Microsoft.AspNetCore.Http;
+<h3>Image Upload</h3>
+
+<div class="container-fluid" style="padding: 3%">
+    <h1><b>@ViewBag.Title</b></h1>
+    <hr />
+    <hr />
+
+    <h2><b>Upload File</b></h2>
+
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFileNow">
+        <input type="file" name="files" /> <br />
+        <button name="upload">Upload Now</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2><b>Currently Uploaded Images</b></h2>
+    @if (Model.Count() == 0)
+        {
+    <p>There are no files to display.</p>
+        }
+        else
+        {
+
+<div class="row">
+    @foreach (var photo in Model)
+        {
+
+    <div class="col-md-3">
+        <div class="img-thumbnail">
+            <img class="" src="@photo.Url" style="width: 300px; height:200px;" />
+            <br /><a asp-controller="Home" asp-action="Delete" onclick="return confirm('Are you sure?');" asp-route-id="@photo.PhotoId"><b>Delete</b></a><br />
+            @photo.FileName
+        </div>
+    </div>
+
+        }
+</div>
+        }
+    </div>
