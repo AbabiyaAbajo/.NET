@@ -1,0 +1,54 @@
+﻿@model Lab4b.Models.Movie
+@{
+    Layout = "_Layout";
+}
+<head>
+    <title>AddMovie</title>
+</head>
+
+<body>
+    <hr style="margin-bottom:5px !important; margin-top:80px !important; " />
+    <h1>Add Movie</h1>
+    <div class="container">
+        
+        <hr />
+
+        <form asp-controller="Home" asp-action="CreateMovie">
+            <div class="form-group">
+                <fieldset>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" asp-for="Title" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <legand>SubTitle</legand>
+                        <input type="text" name="subTitle" asp-for="SubTitle" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" asp-for="Description" class="form-control"> </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="date" name="year" asp-for="Year" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <input type="number" name="rating" asp-for="Rating" class="form-control" />
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="btn btn-default">Add Movie</button>
+        </form>
+
+        <hr />
+
+        </div>
+    <br />
+    <br />
+    </body>

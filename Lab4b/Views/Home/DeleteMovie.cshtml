@@ -1,0 +1,9 @@
+﻿@model Lab4b.Models.Movie
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="@Model.MovieId" />
+    <a asp-action="Index">Back to List</a>
+</form>
