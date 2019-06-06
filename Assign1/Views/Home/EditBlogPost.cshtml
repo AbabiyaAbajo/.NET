@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.BlogPosts
+
+@{
+    ViewData["Title"] = "EditBlogPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Blog Post</h1>
+
+<h4>Blog Posts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="EditBlogPost">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <input type="hidden" asp-for="BlogPostId" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" data-val="true" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

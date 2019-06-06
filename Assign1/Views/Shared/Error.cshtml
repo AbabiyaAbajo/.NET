@@ -1,0 +1,26 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Oh no. Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>Ababiya's Development Mode</h3>
+<p>
+    An <strong>Error</strong> occured while trying to complete your request. 
+</p>
+<p>
+    Return to the home page and try your request again. If the issue persist, send the administor an email
+    at <strong><a href="mailto:abaj0004@algonquinlive.com">admin contact</a></strong>.
+</p>
+<p>
+    Please click on<strong> Assignement 1</strong>, at the top, to return to the main menu.
+ </p>
